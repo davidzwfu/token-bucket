@@ -1,5 +1,9 @@
 # Simple rate limiter
 
+## Technical explanation
+
+Token count is updated when a request comes in. The number of tokens to add is calculated based on the amount of time elapsed since the last refill. The fill rate is measured by the number of milliseconds it takes to refill 1 token (for example a sustained rate of 6 tokens per minute would have a fill rate of 10,000 ms). This way we can determine how many tokens exist in the bucket before attempting to consume.
+
 ## Compromises
 
 - State is kept in memory only, so it will be reset if the service crashes or is restarted.
