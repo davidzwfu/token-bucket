@@ -6,7 +6,7 @@ class TokenBucket {
     this.fillRate = 60000 / this.sustained;
     this.lastRefill = Date.now();
   }
-  
+
   consumeToken() {
     const tokensToAdd = Math.floor((Date.now() - this.lastRefill) / this.fillRate);
     this.tokens = Math.min(this.tokens + tokensToAdd, this.burst);
@@ -14,12 +14,12 @@ class TokenBucket {
 
     if (this.tokens <= 0)
 			return false;
-        
+
     this.tokens--;
     return true;
   }
 }
 
 module.exports = {
-  TokenBucket,
+  TokenBucket
 }
